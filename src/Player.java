@@ -30,6 +30,7 @@ public class Player extends GameObject {
 		switch(this.minigame) {
 			case 1: if(this.offset == 0) {
 						this.vel = 11*this.scene.scaleY;
+						AudioPlayer.getSound("jump").play();
 					}
 					break;
 			case 2: if(this.offset % (216*this.scene.scaleY) < 1) {
@@ -43,6 +44,7 @@ public class Player extends GameObject {
 			case 3: if(this.cdtimer==0 && this.released) {
 						this.released = false;
 						this.cdtimer = this.cooldown;
+						AudioPlayer.getSound("shoot").play();
 						bullets.add(new Bullet((int) (this.x + 24 * this.scene.scaleX), (int) (this.y + 100 * this.scene.scaleY), (int) (16*this.scene.scaleY), this.scene));
 						bullets.add(new Bullet((int) (this.x + 144 * this.scene.scaleX), (int) (this.y + 100 * this.scene.scaleY), (int) (16*this.scene.scaleY), this.scene));
 					}

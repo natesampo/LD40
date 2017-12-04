@@ -26,6 +26,7 @@ public class Asteroid extends GameObject {
 			this.speed = 0;
 			this.animate = 1;
 			this.rotSpeed = 0;
+			AudioPlayer.getSound("explode").play();
 		}
 	}
 	

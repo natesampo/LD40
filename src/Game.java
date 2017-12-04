@@ -45,6 +45,7 @@ public class Game extends Canvas implements Runnable {
 			this.diff = this.menu-1;
 			this.addScene();
 			this.menu = 0;
+			AudioPlayer.getSound("select").play();
 		}
 	}
 	
@@ -56,16 +57,18 @@ public class Game extends Canvas implements Runnable {
 			this.lose = false;
 			this.hp = this.hptotal;
 			this.menu = 1;
+			this.scenes = new LinkedList<Scene>();
 		} else if(keya==67 && this.win) {
 			this.win = false;
 		} else if(keya==10 && this.menu>1) {
 			this.diff = this.menu-1;
 			this.addScene();
 			this.menu = 0;
+			AudioPlayer.getSound("select").play();
 		} else {
 			for(int i=0;i<this.scenes.size();i++) {
 				tempScene = this.scenes.get(i);
-				System.out.println(keya);
+				//System.out.println(keya);
 				if(tempScene.key == keya) {
 					tempScene.pressAction();
 				}
@@ -301,9 +304,9 @@ public class Game extends Canvas implements Runnable {
 			switch(r) {
 				case 0: this.scenes.add(new Scene(0, 0, 1, 1, 1, 1, 81, this));
 						break;
-				case 1: this.scenes.add(new Scene(0, 0, 1, 1, 1, 2, 81, this));
+				case 1: this.scenes.add(new Scene(0, 0, 1, 1, 1, 4, 81, this));
 						break;
-				case 2: this.scenes.add(new Scene(0, 0, 1, 1, 1, 4, 81, this));
+				case 2: this.scenes.add(new Scene(0, 0, 1, 1, 1, 2, 81, this));
 			}
 		}
 	}
@@ -438,6 +441,7 @@ public class Game extends Canvas implements Runnable {
 			image6 = null;
 		}
 		this.debug = false;
+		AudioPlayer.load();
 	}
 	
 	public synchronized void start() {

@@ -18,7 +18,15 @@ public class Axe extends GameObject {
 	
 	public void tick() {
 		this.rotation -= 0.1*(this.difficulty/1.5);
-		this.x -= (int) (this.speed*this.scene.scaleX);
+		if(this.scene.scaleX==1) {
+			this.x -= (int) (this.speed*this.scene.scaleX);
+		} else if(this.scene.scaleX==0.5) {
+			this.x -= (int) (this.speed-3);
+		} else if(this.scene.scaleX==0.25) {
+			this.x -= (int) (this.speed-4);
+		} else {
+			this.x -= (int) (this.speed-4);
+		}
 		
 		this.height = (int) (image.getHeight(null)*this.scene.scaleY);
 		this.width = (int) (image.getWidth(null)*this.scene.scaleX);

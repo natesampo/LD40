@@ -11,7 +11,7 @@ public class Scene {
 	double scaleX, scaleY, axeWait, asteroidWait, spiderWait, progress, progresstick;
 	long sceneTimer;
 	private Game game;
-	public boolean act, done;
+	public boolean act, done, played;
 	private GameObject tempObject;
 	private Bullet tempBullet;
 	public LinkedList<GameObject> objects = new LinkedList<GameObject>();
@@ -84,7 +84,7 @@ public class Scene {
 								break;
 						case 4: ((Player) this.objects.get(0)).setY((int) (((Player) this.objects.get(0)).getY()) - Game.HEIGHT/4);
 								for(int i=1;i<this.objects.size();i++) {
-									((Spider) this.objects.get(i)).setY((int) (((Asteroid) this.objects.get(i)).getY()) + Game.HEIGHT/4);
+									((Spider) this.objects.get(i)).setY((int) (((Spider) this.objects.get(i)).getY()) + Game.HEIGHT/4);
 								}
 								break;
 					}
@@ -227,6 +227,7 @@ public class Scene {
 							//System.out.println("YOU LOSE");
 							this.damage();
 							this.objects.remove(1);
+							AudioPlayer.getSound("hurt").play();
 						}
 					}
 					break;
@@ -265,6 +266,7 @@ public class Scene {
 							this.damage();
 							this.lanes.set(((Car) this.objects.get(i)).lane, false);
 							this.objects.remove(i);
+							AudioPlayer.getSound("hurt").play();
 						}
 					}
 					break;
@@ -330,6 +332,7 @@ public class Scene {
 							//System.out.println("YOU LOSE");
 							this.damage();
 							this.objects.remove(i);
+							AudioPlayer.getSound("hurt").play();
 						}
 						for(int j=0;j<((Player) this.objects.get(0)).bullets.size();j++) {
 							tempBullet = ((Player) this.objects.get(0)).bullets.get(j);
@@ -362,6 +365,10 @@ public class Scene {
 						if(a.intersects(p)) {
 							//System.out.println("CRUSHED");
 							((Spider) this.objects.get(1)).crush();
+							if(this.played) {
+								AudioPlayer.getSound("stomp").play();
+								this.played = false;
+							}
 						}
 					}
 					break;
@@ -465,12 +472,12 @@ public class Scene {
 		this.game = game;
 		this.difficulty = difficulty;
 		this.key = key;
+		this.played = true;
 		this.dmg = 70;
 		this.damageTimer = 0;
 		this.sceneTimer = java.lang.System.currentTimeMillis();
 		rand = new Random();
-		//this.sceneGap = rand.nextInt(5000) + 5000;
-		this.sceneGap = 500;
+		this.sceneGap = rand.nextInt(5000) + 5000;
 		done = false;
 		
 		switch(this.minigame) {
@@ -490,7 +497,7 @@ public class Scene {
 					break;
 			case 3: this.progresstotal = 100;
 					this.progress = 0;
-					this.progresstick = 1;
+					this.progresstick = 0.025;
 					this.cooldown = 100;
 					this.cdTimer = this.cooldown;
 					this.asteroidWait = (rand.nextInt(50) + 50)/difficulty;

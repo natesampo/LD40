@@ -30,6 +30,7 @@ public class Spider extends GameObject {
 			//System.out.println("YOU LOSE");
 			this.scene.damage();
 			this.scene.objects.remove(this);
+			AudioPlayer.getSound("hurt").play();
 		}
 	}
 	
@@ -135,6 +136,7 @@ public class Spider extends GameObject {
 					g.drawImage(op.filter((BufferedImage) image5, null), this.x, this.y, null);
 					if(java.lang.System.currentTimeMillis() - timer > this.deathTimer) {
 						timer = java.lang.System.currentTimeMillis();
+						this.scene.played = true;
 						this.scene.objects.remove(this);
 					}
 					g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));

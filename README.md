@@ -19,3 +19,7 @@ Hard difficulty: Q, W, E, R, T, Y, U, I, O (9 games)
 God difficulty: Q, W, E, R, T, Y, U, I, O, P, A, S, D, F, G, H (16 games)
 
 The game is runnable through the Executable JAR file, as well as by calling the Main method within the Game class.
+
+Download Link:
+
+https://www.dropbox.com/sh/1mklz4dz92p8l8m/AAD9futHuA6WNE9leSAMYy4ua?dl=1

@@ -10,12 +10,12 @@ Instructions: Each game on the screen is controlled by a single button. The firs
 
 Controls:
 
-Easy difficulty: Q
+Easy difficulty: Q (1 game)
 
-Medium difficulty: Q, W, E, R
+Medium difficulty: Q, W, E, R (4 games)
 
-Hard difficulty: Q, W, E, R, T, Y, U, I, O
+Hard difficulty: Q, W, E, R, T, Y, U, I, O (9 games)
 
-God difficulty: Q, W, E, R, T, Y, U, I, O, P, A, S, D, F, G, H
+God difficulty: Q, W, E, R, T, Y, U, I, O, P, A, S, D, F, G, H (16 games)
 
 The game is runnable through the Executable JAR file, as well as by calling the Main method within the Game class.
